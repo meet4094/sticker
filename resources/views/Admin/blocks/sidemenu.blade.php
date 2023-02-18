@@ -9,19 +9,32 @@
     </div>
     <div class="main-sidebar-body">
         <ul class="nav">
-            <li class="nav-label">Category</li>
-            <li class="nav-item {{ @$title == 'category' ? 'active' : '' }}">
+            <li class="nav-label">Status Sticker</li>
+            <li class="nav-item {{ @$title == 'status_sticker_category' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/') }}"><i class="fe fe-aperture"></i><span
                         class="sidemenu-label">Category</span></a>
             </li>
-            <li class="nav-label">Category By Sticker</li>
-            <li class="nav-item {{ @$title == 'sticker' ? 'active' : '' }}">
-                <a class="nav-link" href="{{ url('/category_stickers') }}"><i class="fe fe-image"></i><span
+            <li class="nav-item {{ @$title == 'status_sticker' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('/status_sticker') }}"><i class="fe fe-image"></i><span
                         class="sidemenu-label">Sticker</span></a>
             </li>
-            <li class="nav-label">App By Sticker Category</li>
+            <li class="nav-label">Status Text</li>
+            <li class="nav-item {{ @$title == 'status_text_category' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('status_text_category') }}"><i class="fe fe-codepen"></i><span
+                        class="sidemenu-label">Category</span></a>
+            </li>
+            <li class="nav-item {{ @$title == 'status_text' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('/status_text') }}"><i class="fe fe-type"></i><span
+                        class="sidemenu-label">Text</span></a>
+            </li>
+            <li class="nav-label">Apps By Sticker Category</li>
             <li class="nav-item {{ @$title == 'appbystickercategory' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/app_by_sticker_category') }}"><i class="fe fe-cpu"></i><span
+                        class="sidemenu-label">Category</span></a>
+            </li>
+            <li class="nav-label">Apps By Text Category</li>
+            <li class="nav-item {{ @$title == 'appbytextcategory' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ url('/app_by_text_category') }}"><i class="fe fe-command"></i><span
                         class="sidemenu-label">Category</span></a>
             </li>
             <li class="nav-label">Api Call By User</li>
@@ -29,10 +42,10 @@
                 <a class="nav-link" href="{{ url('/api_call') }}"><i class="fe fe-user"></i><span
                         class="sidemenu-label">User</span></a>
             </li>
-            <li class="nav-label">App By Setting</li>
-            <li class="nav-item {{ @$title == 'appsetting' ? 'active' : '' }}">
+            <li class="nav-label">Apps By Setting</li>
+            <li class="nav-item {{ @$title == 'app_setting' ? 'active' : '' }}">
                 <a class="nav-link" href="{{ url('/app_setting') }}"><i class="fe fe-settings"></i><span
-                        class="sidemenu-label">App</span></a>
+                        class="sidemenu-label">Apps</span></a>
             </li>
         </ul>
     </div>

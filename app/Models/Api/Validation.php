@@ -42,7 +42,7 @@ class Validation extends Model
         }
     }
 
-    public function CategoryData($req)
+    public function StatusStickerCategoryData($req)
     {
         $request_token = $req->header('request-token');
         $AppToken = $req->app_token;
@@ -101,7 +101,7 @@ class Validation extends Model
         }
     }
 
-    public function ImagesData($req)
+    public function StatusStickersData($req)
     {
         $request_token = $req->header('request-token');
         $AppToken = $req->app_token;
@@ -160,7 +160,125 @@ class Validation extends Model
         }
     }
 
-    public function appbystickercategoryData($req)
+    public function StatusTextCategoryData($req)
+    {
+        $request_token = $req->header('request-token');
+        $AppToken = $req->app_token;
+        $DeviceId = $req->device_id;
+        $AppId = $req->app_id;
+        // $CategoryId = $req->category_id;
+        $RequestTokenData = DB::table('settings')->where('request_token', $request_token)->first();
+        $AppTokenData = DB::table('api_calls')->where('app_token', $AppToken)->first();
+        // $CategoryData = DB::table('category')->where('catId', $CategoryId)->first();
+
+        if (empty($request_token) || empty($RequestTokenData->request_token)) {
+            return response()->json([
+                "statuscode" => 7,
+                "msg" => "Request token missing"
+            ]);
+        } else {
+            $validator = Validator::make($req->all(), [
+                'app_token' => 'required',
+                'device_id' => 'required',
+                'app_id' => 'required',
+                // 'category_id' => 'required',
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    "statuscode" => 0,
+                    'error' => $validator->errors()->toArray()
+                ]);
+            } else {
+                if (empty($AppToken) || empty($AppTokenData->app_token)) {
+                    return response()->json([
+                        "statuscode" => 7,
+                        "msg" => "App token Invalide"
+                    ]);
+                } else if ($DeviceId != $AppTokenData->device_id) {
+                    return response()->json([
+                        "statuscode" => 7,
+                        "msg" => "Device Id Invalide"
+                    ]);
+                } else if ($AppId != $AppTokenData->app_id) {
+                    return response()->json([
+                        "statuscode" => 7,
+                        "msg" => "App Id Invalide"
+                    ]);
+                    // } else if ($CategoryData == '' || $CategoryId != $CategoryData->catId) {
+                    //     return response()->json([
+                    //         "statuscode" => 7,
+                    //         "msg" => "Category Id Invalide"
+                    //     ]);
+                } else {
+                    return response()->json([
+                        "statuscode" => 1,
+                        "msg" => "Success"
+                    ]);
+                }
+            }
+        }
+    }
+
+    public function StatusTextData($req)
+    {
+        $request_token = $req->header('request-token');
+        $AppToken = $req->app_token;
+        $DeviceId = $req->device_id;
+        $AppId = $req->app_id;
+        $CategoryId = $req->category_id;
+        $RequestTokenData = DB::table('settings')->where('request_token', $request_token)->first();
+        $AppTokenData = DB::table('api_calls')->where('app_token', $AppToken)->first();
+        // $CategoryData = DB::table('category')->where('catId', $CategoryId)->first();
+
+        if (empty($request_token) || empty($RequestTokenData->request_token)) {
+            return response()->json([
+                "statuscode" => 7,
+                "msg" => "Request token missing"
+            ]);
+        } else {
+            $validator = Validator::make($req->all(), [
+                'app_token' => 'required',
+                'device_id' => 'required',
+                'app_id' => 'required',
+                // 'category_id' => 'required',
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    "statuscode" => 0,
+                    'error' => $validator->errors()->toArray()
+                ]);
+            } else {
+                if (empty($AppToken) || empty($AppTokenData->app_token)) {
+                    return response()->json([
+                        "statuscode" => 7,
+                        "msg" => "App token Invalide"
+                    ]);
+                } else if ($DeviceId != $AppTokenData->device_id) {
+                    return response()->json([
+                        "statuscode" => 7,
+                        "msg" => "Device Id Invalide"
+                    ]);
+                } else if ($AppId != $AppTokenData->app_id) {
+                    return response()->json([
+                        "statuscode" => 7,
+                        "msg" => "App Id Invalide"
+                    ]);
+                    // } else if ($CategoryData == '' || $CategoryId != $CategoryData->catId) {
+                    //     return response()->json([
+                    //         "statuscode" => 7,
+                    //         "msg" => "Category Id Invalide"
+                    //     ]);
+                } else {
+                    return response()->json([
+                        "statuscode" => 1,
+                        "msg" => "Success"
+                    ]);
+                }
+            }
+        }
+    }
+
+    public function AppByStickerCategoryData($req)
     {
         $request_token = $req->header('request-token');
         $AppToken = $req->app_token;
@@ -169,7 +287,66 @@ class Validation extends Model
         $CategoryId = $req->main_category_id;
         $RequestTokenData = DB::table('settings')->where('request_token', $request_token)->first();
         $AppTokenData = DB::table('api_calls')->where('app_token', $AppToken)->first();
-        $CategoryData = DB::table('app_by_image_category')->where('category_id', $CategoryId)->first();
+        $CategoryData = DB::table('app_by_sticker_category')->where('category_id', $CategoryId)->first();
+
+        if (empty($request_token) || empty($RequestTokenData->request_token)) {
+            return response()->json([
+                "statuscode" => 7,
+                "msg" => "Request token missing"
+            ]);
+        } else {
+            $validator = Validator::make($req->all(), [
+                'app_token' => 'required',
+                'device_id' => 'required',
+                'app_id' => 'required',
+                'main_category_id' => 'required',
+            ]);
+            if ($validator->fails()) {
+                return response()->json([
+                    "statuscode" => 0,
+                    'error' => $validator->errors()->toArray()
+                ]);
+            } else {
+                if (empty($AppToken) || empty($AppTokenData->app_token)) {
+                    return response()->json([
+                        "statuscode" => 7,
+                        "msg" => "App token Invalide"
+                    ]);
+                } else if ($DeviceId != $AppTokenData->device_id) {
+                    return response()->json([
+                        "statuscode" => 7,
+                        "msg" => "Device Id Invalide"
+                    ]);
+                } else if ($AppId != $AppTokenData->app_id) {
+                    return response()->json([
+                        "statuscode" => 7,
+                        "msg" => "App Id Invalide"
+                    ]);
+                } else if ($CategoryData == '' || $CategoryId != $CategoryData->category_id) {
+                    return response()->json([
+                        "statuscode" => 7,
+                        "msg" => "Main Category Id Invalide"
+                    ]);
+                } else {
+                    return response()->json([
+                        "statuscode" => 1,
+                        "msg" => "Success"
+                    ]);
+                }
+            }
+        }
+    }
+
+    public function AppByTextCategoryData($req)
+    {
+        $request_token = $req->header('request-token');
+        $AppToken = $req->app_token;
+        $DeviceId = $req->device_id;
+        $AppId = $req->app_id;
+        $CategoryId = $req->main_category_id;
+        $RequestTokenData = DB::table('settings')->where('request_token', $request_token)->first();
+        $AppTokenData = DB::table('api_calls')->where('app_token', $AppToken)->first();
+        $CategoryData = DB::table('app_by_text_category')->where('category_id', $CategoryId)->first();
 
         if (empty($request_token) || empty($RequestTokenData->request_token)) {
             return response()->json([

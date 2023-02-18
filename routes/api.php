@@ -16,10 +16,13 @@ use App\Http\Controllers\Api\MasterController;
 |
 */
 
-Route::post('apicall', [MasterController::class, 'ApiCallData']);
-Route::post('category', [MasterController::class, 'CategoryData']);
-Route::post('images', [MasterController::class, 'ImagesData']);
-Route::post('appbystickercategory', [MasterController::class, 'appbystickercategoryData']);
+Route::post('apps/callappsapi', [MasterController::class, 'ApiCallData']);
+Route::post('statussticker/category', [MasterController::class, 'StatusStickerCategoryData']);
+Route::post('statussticker/images', [MasterController::class, 'StatusStickersData']);
+Route::post('statustext/category', [MasterController::class, 'StatusTextCategoryData']);
+Route::post('statustext/text', [MasterController::class, 'StatusTextData']);
+Route::post('appbycategory/statusstickercategory', [MasterController::class, 'AppByStickerCategoryData']);
+Route::post('appbycategory/statustextcategory', [MasterController::class, 'AppByTextCategoryData']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

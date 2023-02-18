@@ -10,7 +10,7 @@
         </div>
         <div>
             <button type="button" class="btn btn-outline-primary rounded" id="toggler" data-toggle="modal"
-                data-target="#add_app_by_sticker_category_modal">
+                data-target="#add_app_by_text_category_modal">
                 Add Category
             </button>
             <a href="#" class="btn ripple btn-primary navresponsive-toggler mb-0" data-toggle="collapse"
@@ -21,7 +21,7 @@
         </div>
     </div>
     <div class="responsive-background">
-        <div id="add_app_by_sticker_category_modal" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel"
+        <div id="add_app_by_text_category_modal" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -31,7 +31,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ url('add_app_by_sticker_category') }}" class="ajax-form-submit" id="cform"
+                    <form action="{{ url('add_app_by_text_category') }}" class="ajax-form-submit" id="cform"
                         method="post" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="appbycatId" id="appbycatId" value="">
@@ -86,7 +86,7 @@
                                                                 class="tx-danger">*</span></label>
                                                         <div class="input-group">
                                                             <input type="file" class="form-control"
-                                                                id="dropify_sticker" name="image"
+                                                                id="dropify_text" name="image"
                                                                 accept="image/png, image/gif, image/jpeg"
                                                                 data-default-file="" data-height="200">
                                                         </div>
@@ -192,7 +192,7 @@
             // allowClear: true,
             width: "100%",
             ajax: {
-                url: "{{ url('get_status_sticker_Category') }}",
+                url: "{{ url('get_status_text_Category') }}",
                 type: "post",
                 allowClear: true,
                 dataType: 'json',
@@ -279,7 +279,7 @@
                 success: function(response) {
                     console.log(response.st);
                     if (response.st == 'success') {
-                        $('#add_app_by_sticker_category_modal').modal('toggle');
+                        $('#add_app_by_text_category_modal').modal('toggle');
                         Swal.fire({
                             icon: 'success',
                             title: 'Success!',
@@ -316,7 +316,7 @@
                     [0, "desc"]
                 ],
                 ajax: {
-                    url: '{{ route('app_by_sticker_category_list') }}',
+                    url: '{{ route('app_by_text_category_list') }}',
                     data: {
                         'category_id': category_id,
                         'app_id': app_id,
@@ -372,7 +372,7 @@
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
-                        url: "{{ url('delete_app_by_sticker_category') }}",
+                        url: "{{ url('delete_app_by_text_category') }}",
                         type: 'post',
                         data: {
                             _token: CSRF_TOKEN,
@@ -398,11 +398,11 @@
             })
         }
 
-        function edit_app_by_sticker_category(edit_category) {
+        function edit_app_by_text_category(edit_category) {
             var id = $(edit_category).data('val');
             $.ajax({
                 type: 'POST',
-                url: "{{ url('get_app_by_sticker_category_data') }}",
+                url: "{{ url('get_app_by_text_category_data') }}",
                 data: {
                     id: id
                 },
@@ -424,7 +424,7 @@
                         $('#profile_img_container').append('<img width="200"; src="' +
                             response.msg.image +
                             '" />');
-                        $('#add_app_by_sticker_category_modal').modal('show');
+                        $('#add_app_by_text_category_modal').modal('show');
                     } else {
                         alert('failed');
                     }

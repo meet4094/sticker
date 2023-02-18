@@ -23,7 +23,7 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="{{ url('add_category') }}" class="ajax-form-submit" id="cform" method="post"
+                        <form action="{{ url('add_status_text_category') }}" class="ajax-form-submit" id="cform" method="post"
                             enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="catId" id="catId" value="">
@@ -187,7 +187,7 @@
                 "order": [
                     [0, "desc"]
                 ],
-                ajax: "{{ route('category_list') }}",
+                ajax: "{{ route('status_text_category_list') }}",
                 columns: [{
                         data: 'catId',
                         name: 'catId'
@@ -226,7 +226,7 @@
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
-                        url: "{{ url('delete_category') }}",
+                        url: "{{ url('delete_status_text_category') }}",
                         type: 'post',
                         data: {
                             _token: CSRF_TOKEN,
@@ -252,11 +252,11 @@
             })
         }
 
-        function edit_category(edit_category) {
+        function edit_status_text_category(edit_category) {
             var id = $(edit_category).data('val');
             $.ajax({
                 type: 'POST',
-                url: "{{ url('getcategorydata') }}",
+                url: "{{ url('get_status_text_category_data') }}",
                 data: {
                     id: id
                 },

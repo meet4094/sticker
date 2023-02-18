@@ -1,17 +1,22 @@
 @extends('Admin.template')
 @section('main-section')
+    <style>
+        .modal-dialog {
+            max-width: 600px !important;
+        }
+    </style>
     <div class="page-header">
         <div>
-            <h2 class="main-content-title tx-24 mg-b-5">App By Category</h2>
+            <h2 class="main-content-title tx-24 mg-b-5">Texts</h2>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">Master</li>
-                <li class="breadcrumb-item active" aria-current="page">App By Category List</li>
+                <li class="breadcrumb-item active" aria-current="page">Texts List</li>
             </ol>
         </div>
         <div>
             <button type="button" class="btn btn-outline-primary rounded" id="toggler" data-toggle="modal"
-                data-target="#add_app_by_sticker_category_modal">
-                Add Category
+                data-target="#add_Texts_modal">
+                Add Text
             </button>
             <a href="#" class="btn ripple btn-primary navresponsive-toggler mb-0" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -21,8 +26,7 @@
         </div>
     </div>
     <div class="responsive-background">
-        <div id="add_app_by_sticker_category_modal" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+        <div id="add_Texts_modal" class="modal fade" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -31,69 +35,55 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ url('add_app_by_sticker_category') }}" class="ajax-form-submit" id="cform"
-                        method="post" enctype="multipart/form-data">
+                    <form action="{{ url('add_status_texts') }}" class="ajax-form-submit" id="cform" method="post"
+                        enctype="multipart/form-data">
                         @csrf
-                        <input type="hidden" name="appbycatId" id="appbycatId" value="">
+                        <input type="hidden" name="itemId" id="itemId" value="">
                         <div class="modal-body">
                             <div class="row" style="display: flex;justify-content: center;">
                                 <div class="col-12">
-                                    <div class="">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="form-group">
-                                                        <label class="d-flex" for="appId">Select App<span
-                                                                class="tx-danger">*</span></label>
-                                                        <select class="form-control select_app" name="appId"
-                                                            id="appId">
-                                                            <option value=""></option>
-                                                        </select>
-                                                        <input type="hidden" name="appName" id="appName" value="">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="d-flex" for="catId">Select Category<span
+                                                            class="tx-danger">*</span></label>
+                                                    <select class="form-control select2" name="category" id="catId">
+                                                        <option value=""></option>
+                                                    </select>
+                                                    <input type="hidden" name="catName" id="catName" value="">
+                                                </div>
+                                                <span class="float-left tx-danger error_text category_error"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <label class="float-left" for="text">Text<span
+                                                            class="tx-danger">*</span></label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" value=""
+                                                            name="text" id="text" placeholder="Enter text" />
                                                     </div>
-                                                    <span class="float-left tx-danger error_text appId_error"></span>
+                                                    <span class="float-left tx-danger error_text text_error"></span>
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="form-group">
-                                                        <label class="d-flex" for="catId">Select Category<span
-                                                                class="tx-danger">*</span></label>
-                                                        <select class="form-control select2" name="categoryId"
-                                                            id="categoryId">
-                                                            <option value=""></option>
-                                                        </select>
-                                                        <input type="hidden" name="catName" id="catName" value="">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12 text-left">
+                                                <label class="" for="cname">Is New<span
+                                                        class="tx-danger">*</span></label>
+                                                <div class="form-control form-group">
+                                                    <div class="form-check form-check-inline float-left">
+                                                        <input class="form-check-input" type="radio" name="new"
+                                                            id="visible1" value="1" />
+                                                        <label class="form-check-label" for="visible1">True</label>
                                                     </div>
-                                                    <span class="float-left tx-danger error_text categoryId_error"></span>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="form-group">
-                                                        <label class="float-left" for="category">Name<span
-                                                                class="tx-danger">*</span></label>
-                                                        <input type="text" class="form-control" id="category"
-                                                            placeholder='Enter category' name="category" value="">
-                                                        <span class="float-left tx-danger error_text category_error"></span>
+                                                    <div class="form-check form-check-inline float-left">
+                                                        <input class="form-check-input" type="radio" name="new"
+                                                            id="visible2" value="0" checked />
+                                                        <label class="form-check-label" for="visible2">False</label>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-12">
-                                                    <div class="form-group">
-                                                        <label class="float-left" for="image">Image<span
-                                                                class="tx-danger">*</span></label>
-                                                        <div class="input-group">
-                                                            <input type="file" class="form-control"
-                                                                id="dropify_sticker" name="image"
-                                                                accept="image/png, image/gif, image/jpeg"
-                                                                data-default-file="" data-height="200">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group" id="profile_img_container">
-                                                    </div>
-                                                    <span class="float-left tx-danger error_text image_error"></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -114,14 +104,6 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <div class="advanced-search">
                 <div class="row">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="">app</span></label>
-                            <select class="form-control select2-flag-search select_app" id="app_id">
-                                <option value=""></option>
-                            </select>
-                        </div>
-                    </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="">categories</span></label>
@@ -148,10 +130,8 @@
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>App Name</th>
-                                            <th>Main Category Name</th>
-                                            <th>Sub Category Name</th>
-                                            <th>Background Image</th>
+                                            <th>Category</th>
+                                            <th>Text</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -176,23 +156,20 @@
         });
 
         $('#toggler').on('click', function() {
-            $('#id').val('');
-            $('#profile_img_container').html('');
-            $('.modal-title').html('Add Category');
+            $('#itemId').val('');
+            $("#catId").val('').trigger('change');
             document.getElementById("cform").reset();
-            $('.dropify-clear').trigger("click");
+            $('.modal-title').html('Add Stickers');
+            $('#images').attr('multiple', 'multiple');
+            $('#profile_img_container').html('');
         });
-
-        // $("#profile_img_container").click(function() {
-        //     $("#image").click();
-        // });
 
         $(".select2").select2({
             placeholder: "Select a Category",
             // allowClear: true,
             width: "100%",
             ajax: {
-                url: "{{ url('get_status_sticker_Category') }}",
+                url: "{{ url('get_status_text_Category') }}",
                 type: "post",
                 allowClear: true,
                 dataType: 'json',
@@ -200,7 +177,7 @@
                 data: function(params) {
                     return {
                         searchTerm: params.term, // search term
-                        categoryId: $('select[name="categoryId"]').val(),
+                        category: $('select[name="category"]').val(),
                     };
                 },
                 processResults: function(response) {
@@ -217,46 +194,6 @@
             var data = $(".select2 option:selected").text();
             $("#catName").val(data);
         })
-
-        $(".select_app").select2({
-            placeholder: "Select a App",
-            // allowClear: true,
-            width: "100%",
-            ajax: {
-                url: "{{ url('get_App') }}",
-                type: "post",
-                allowClear: true,
-                dataType: 'json',
-                delay: 250,
-                data: function(params) {
-                    return {
-                        searchTerm: params.term, // search term
-                        app_name: $('select[name="app_name"]').val(),
-                    };
-                },
-                processResults: function(response) {
-                    console.log(response);
-                    return {
-                        results: response
-                    };
-                },
-                cache: true
-            }
-        });
-
-        $('.select_app').on('change', function() {
-            var data = $(".select_app option:selected").text();
-            $("#appName").val(data);
-        })
-
-        var loadFile = function(event) {
-            var image = document.getElementById('profile_img_container');
-            image.src = URL.createObjectURL(event.target.files[0]);
-        };
-
-        $(document).ready(function() {
-            $('.dropify').dropify();
-        });
 
         $('.ajax-form-submit').on('submit', function(e) {
             $('#save_data').prop('disabled', true);
@@ -277,16 +214,14 @@
                 processData: false,
                 data: formdata ? formdata : form.serialize(),
                 success: function(response) {
-                    console.log(response.st);
+                    console.log(response);
                     if (response.st == 'success') {
-                        $('#add_app_by_sticker_category_modal').modal('toggle');
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Success!',
-                            text: response.msg,
-                        }).then(() => {
-                            location.reload()
-                        });
+                        $('#add_Texts_modal').modal('toggle');
+                        $('#save_data').prop('disabled', false);
+                        Swal.fire("success!", response.msg, "success");
+                        $('.data-table').DataTable().ajax.reload();
+                        $('.form_proccessing').html('');
+                        document.getElementById("cform").reset();
                     } else {
                         $('.form_proccessing').html('');
                         $('#save_data').prop('disabled', false);
@@ -308,18 +243,17 @@
             load_datatable('');
         });
 
-        function load_datatable(category_id = '', app_id = '') {
-            var table = $('.data-table').DataTable({
+        function load_datatable(category_id = '') {
+            $('.data-table').DataTable({
                 processing: true,
                 serverSide: true,
                 "order": [
                     [0, "desc"]
                 ],
                 ajax: {
-                    url: '{{ route('app_by_sticker_category_list') }}',
+                    url: '{{ route('status_texts_list') }}',
                     data: {
-                        'category_id': category_id,
-                        'app_id': app_id,
+                        'category_id': category_id
                     }
                 },
                 columns: [{
@@ -327,20 +261,12 @@
                         name: 'id'
                     },
                     {
-                        data: 'app_name',
-                        name: 'app_name'
-                    },
-                    {
                         data: 'catName',
                         name: 'catName'
                     },
                     {
-                        data: 'name',
-                        name: 'name'
-                    },
-                    {
-                        data: 'images',
-                        name: 'images'
+                        data: 'text',
+                        name: 'text'
                     },
                     {
                         data: 'action',
@@ -372,7 +298,7 @@
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
-                        url: "{{ url('delete_app_by_sticker_category') }}",
+                        url: "{{ url('delete_status_text') }}",
                         type: 'post',
                         data: {
                             _token: CSRF_TOKEN,
@@ -398,35 +324,37 @@
             })
         }
 
-        function edit_app_by_sticker_category(edit_category) {
-            var id = $(edit_category).data('val');
+        function edit_status_text(edit_item) {
+            var id = $(edit_item).data('val');
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
                 type: 'POST',
-                url: "{{ url('get_app_by_sticker_category_data') }}",
+                url: "{{ url('get_status_text_data') }}",
                 data: {
+                    _token: CSRF_TOKEN,
                     id: id
                 },
                 success: function(response) {
-                    console.log(response);
                     if (response.st == 'success') {
                         $('#profile_img_container').html('');
-                        $('.modal-title').html('Edit Category');
-                        $('.dropify-clear').trigger("click");
-                        $('#appbycatId').val(response.msg.id);
-                        $('#appId').append(
-                            `<option class="d-none" value="${response.msg.appId}" selected>${response.msg.appName}</option>`
+                        $('.modal-title').html('Edit Stickers');
+                        $('#itemId').val(response.msg.id);
+                        $('#forlink').val(response.msg.foreground);
+                        $('#add_Texts_modal').modal('show');
+                        $('#text').val(response.msg.text);
+                        var catName = response.msg.catName;
+                        if (response.msg.is_new == 'true') {
+                            $('#visible1').prop("checked", true);
+                        } else {
+                            $('#visible2').prop("checked", true);
+                        }
+                        $('#catId').append(
+                            `<option class="d-none" value="${response.msg.catId}" selected>${catName}</option>`
                         );
-                        $('#categoryId').append(
-                            `<option class="d-none" value="${response.msg.catId}" selected>${response.msg.catName}</option>`
-                        );
-                        $('#categoryId').val(response.msg.catId);
-                        $('#category').val(response.msg.name);
-                        $('#profile_img_container').append('<img width="200"; src="' +
-                            response.msg.image +
-                            '" />');
-                        $('#add_app_by_sticker_category_modal').modal('show');
                     } else {
-                        alert('failed');
+                        $.each(response.error, function(prefix, val) {
+                            $('span.' + prefix + '_error').text(val).show().delay(5000).fadeOut();
+                        });
                     }
                 },
                 error: function(error) {
@@ -438,10 +366,9 @@
 
         $('#statusApply').click(function() {
             var category_id = $('#cat_id').val();
-            var app_id = $('#app_id').val();
-            if (category_id != '' || app_id != '') {
+            if (category_id != '') {
                 $('#table_list_data').DataTable().destroy();
-                load_datatable(category_id, app_id);
+                load_datatable(category_id);
             }
         });
     </script>

@@ -33,11 +33,11 @@ class MasterController extends Controller
         }
     }
 
-    public function CategoryData(Request $req)
+    public function StatusStickerCategoryData(Request $req)
     {
-        $validation_data = $this->Validation->CategoryData($req);
+        $validation_data = $this->Validation->StatusStickerCategoryData($req);
         if ($validation_data->original['statuscode'] == 1) {
-            $data = $this->Main->CategoryData($req);
+            $data = $this->Main->StatusStickerCategoryData($req);
             return response()->json([
                 "statuscode" => 1,
                 "msg" => "success!!.",
@@ -48,11 +48,41 @@ class MasterController extends Controller
         }
     }
 
-    public function ImagesData(Request $req)
+    public function StatusStickersData(Request $req)
     {
-        $validation_data = $this->Validation->ImagesData($req);
+        $validation_data = $this->Validation->StatusStickersData($req);
         if ($validation_data->original['statuscode'] == 1) {
-            $data = $this->Main->ImagesData($req);
+            $data = $this->Main->StatusStickersData($req);
+            return response()->json([
+                "statuscode" => 1,
+                "msg" => "success!!.",
+                "data" => $data
+            ]);
+        } else {
+            return $validation_data;
+        }
+    }
+
+    public function StatusTextCategoryData(Request $req)
+    {
+        $validation_data = $this->Validation->StatusTextCategoryData($req);
+        if ($validation_data->original['statuscode'] == 1) {
+            $data = $this->Main->StatusTextCategoryData($req);
+            return response()->json([
+                "statuscode" => 1,
+                "msg" => "success!!.",
+                "data" => $data
+            ]);
+        } else {
+            return $validation_data;
+        }
+    }
+
+    public function StatusTextData(Request $req)
+    {
+        $validation_data = $this->Validation->StatusTextData($req);
+        if ($validation_data->original['statuscode'] == 1) {
+            $data = $this->Main->StatusTextData($req);
             return response()->json([
                 "statuscode" => 1,
                 "msg" => "success!!.",
@@ -63,11 +93,26 @@ class MasterController extends Controller
         }
     }
     
-    public function appbystickercategoryData(Request $req)
+    public function AppByStickerCategoryData(Request $req)
     {
-        $validation_data = $this->Validation->appbystickercategoryData($req);
+        $validation_data = $this->Validation->AppByStickerCategoryData($req);
         if ($validation_data->original['statuscode'] == 1) {
-            $data = $this->Main->appbystickercategoryData($req);
+            $data = $this->Main->AppByStickerCategoryData($req);
+            return response()->json([
+                "statuscode" => 1,
+                "msg" => "success!!.",
+                "data" => $data
+            ]);
+        } else {
+            return $validation_data;
+        }
+    }
+
+    public function AppByTextCategoryData(Request $req)
+    {
+        $validation_data = $this->Validation->AppByTextCategoryData($req);
+        if ($validation_data->original['statuscode'] == 1) {
+            $data = $this->Main->AppByTextCategoryData($req);
             return response()->json([
                 "statuscode" => 1,
                 "msg" => "success!!.",

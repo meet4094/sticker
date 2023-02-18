@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/category';
+    public const HOME = '/status_sticker_category';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.

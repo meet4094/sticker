@@ -35,7 +35,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ url('add_stickers') }}" class="ajax-form-submit" id="cform" method="post"
+                    <form action="{{ url('add_status_stickers') }}" class="ajax-form-submit" id="cform" method="post"
                         enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="itemId" id="itemId" value="">
@@ -172,7 +172,7 @@
             // allowClear: true,
             width: "100%",
             ajax: {
-                url: "{{ url('getCategory') }}",
+                url: "{{ url('get_status_sticker_Category') }}",
                 type: "post",
                 allowClear: true,
                 dataType: 'json',
@@ -254,7 +254,7 @@
                     [0, "desc"]
                 ],
                 ajax: {
-                    url: '{{ route('stickers_list') }}',
+                    url: '{{ route("status_stickers_list") }}',
                     data: {
                         'category_id': category_id
                     }
@@ -301,7 +301,7 @@
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
-                        url: "{{ url('delete_sticker') }}",
+                        url: "{{ url('delete_status_sticker') }}",
                         type: 'post',
                         data: {
                             _token: CSRF_TOKEN,
@@ -327,12 +327,12 @@
             })
         }
 
-        function edit_item(edit_item) {
+        function edit_status_sticker(edit_item) {
             var id = $(edit_item).data('val');
             var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
             $.ajax({
                 type: 'POST',
-                url: "{{ url('getstickerdata') }}",
+                url: "{{ url('get_status_sticker_data') }}",
                 data: {
                     _token: CSRF_TOKEN,
                     id: id

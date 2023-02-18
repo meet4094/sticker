@@ -52,9 +52,9 @@ class Main extends Model
         return $Api_CallData;
     }
 
-    public function CategoryData($req)
+    public function StatusStickerCategoryData($req)
     {
-        $CategoryData = DB::table('category')
+        $CategoryData = DB::table('status_sticker_category')
             ->where('is_deleted', 0)
             ->get();
         if (empty(json_decode($CategoryData))) {
@@ -64,17 +64,17 @@ class Main extends Model
                 $data[] = array([
                     'id' => $Category->catId,
                     'category_name' => $Category->catName,
-                    'category_image' => asset('images/' . $Category->slug_name . '/' . $Category->image),
+                    'category_image' => asset('images/statussticker/' . $Category->slug_name . '/' . $Category->image),
                 ]);
             }
             return $data;
         }
     }
 
-    public function ImagesData($req)
+    public function StatusStickersData($req)
     {
-        $ImagesData = DB::table('images as im')
-            ->join('category as ca', 'ca.catId', '=', 'im.catId')
+        $ImagesData = DB::table('status_sticker as im')
+            ->join('status_sticker_category as ca', 'ca.catId', '=', 'im.catId')
             ->select('im.*', 'ca.catName', 'ca.slug_name')
             ->where('im.is_deleted', 0)
             ->get();
@@ -86,7 +86,7 @@ class Main extends Model
                 $data[] = array([
                     'id' => $Images->id,
                     'category_name' => $Images->catName,
-                    'image' => asset('images/' . $Images->slug_name . '/' . $Images->images),
+                    'image' => asset('images/statussticker/' . $Images->slug_name . '/' . $Images->images),
                     'is_new' => $Images->is_new,
                 ]);
             }
@@ -94,9 +94,51 @@ class Main extends Model
         return $data;
     }
 
-    public function appbystickercategoryData($req)
+    public function StatusTextCategoryData($req)
     {
-        $ImagesData = DB::table('app_by_image_category')
+        $CategoryData = DB::table('status_text_category')
+            ->where('is_deleted', 0)
+            ->get();
+        if (empty(json_decode($CategoryData))) {
+            $data = [];
+        } else {
+            foreach ($CategoryData as $key => $Category) {
+                $data[] = array([
+                    'id' => $Category->catId,
+                    'category_name' => $Category->catName,
+                    'category_image' => asset('images/statustext/' . $Category->slug_name . '/' . $Category->image),
+                ]);
+            }
+            return $data;
+        }
+    }
+
+    public function StatusTextData($req)
+    {
+        $ImagesData = DB::table('status_text as im')
+            ->join('status_text_category as ca', 'ca.catId', '=', 'im.catId')
+            ->select('im.*', 'ca.catName', 'ca.slug_name')
+            ->where('im.is_deleted', 0)
+            ->get();
+
+        if (empty(json_decode($ImagesData))) {
+            $data = [];
+        } else {
+            foreach ($ImagesData as $Images) {
+                $data[] = array([
+                    'id' => $Images->id,
+                    'category_name' => $Images->catName,
+                    'text' => $Images->text,
+                    'is_new' => $Images->is_new,
+                ]);
+            }
+        }
+        return $data;
+    }
+
+    public function AppByStickerCategoryData($req)
+    {
+        $ImagesData = DB::table('app_by_sticker_category')
             ->select('id', 'category_id', 'name', 'image')
             ->where('category_id', $req->main_category_id)
             ->where('is_del', 0)
@@ -110,7 +152,30 @@ class Main extends Model
                     'id' => $Images->id,
                     'main_category_id' => $Images->category_id,
                     'name' => $Images->name,
-                    'image' => asset('images/appbyimagecategory/'  . $Images->image),
+                    'image' => asset('images/appbystickercategory/'  . $Images->image),
+                ]);
+            }
+        }
+        return $data;
+    }
+
+    public function AppByTextCategoryData($req)
+    {
+        $ImagesData = DB::table('app_by_text_category')
+            ->select('id', 'category_id', 'name', 'image')
+            ->where('category_id', $req->main_category_id)
+            ->where('is_del', 0)
+            ->get();
+
+        if (empty(json_decode($ImagesData))) {
+            $data = [];
+        } else {
+            foreach ($ImagesData as $Images) {
+                $data[] = array([
+                    'id' => $Images->id,
+                    'main_category_id' => $Images->category_id,
+                    'name' => $Images->name,
+                    'image' => asset('images/appbytextcategory/'  . $Images->image),
                 ]);
             }
         }

@@ -7,13 +7,13 @@
 	},
 	"item": [
 		{
-			"name": "Api Call",
+			"name": "CallAppsApi Copy",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Request-Token",
-						"value": "MNhKK0nuG4ZlXxf",
+						"value": "BUzvxsvZXZPNG8c",
 						"type": "text"
 					},
 					{
@@ -48,7 +48,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/apicall",
+					"raw": "http://127.0.0.1:8000/api/apps/callappsapi",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -59,20 +59,21 @@
 					"port": "8000",
 					"path": [
 						"api",
-						"apicall"
+						"apps",
+						"callappsapi"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Category",
+			"name": "StatusStickerCategory",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Request-Token",
-						"value": "MNhKK0nuG4ZlXxf",
+						"value": "BUzvxsvZXZPNG8c",
 						"type": "text"
 					},
 					{
@@ -86,7 +87,7 @@
 					"formdata": [
 						{
 							"key": "app_token",
-							"value": "DCxuwBuRoGDTtC2",
+							"value": "rbNRGMamdftAUGa",
 							"type": "text"
 						},
 						{
@@ -96,7 +97,7 @@
 						},
 						{
 							"key": "app_id",
-							"value": "1",
+							"value": "2",
 							"type": "text"
 						},
 						{
@@ -108,7 +109,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/category",
+					"raw": "http://127.0.0.1:8000/api/statussticker/category",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -119,6 +120,7 @@
 					"port": "8000",
 					"path": [
 						"api",
+						"statussticker",
 						"category"
 					]
 				}
@@ -126,13 +128,13 @@
 			"response": []
 		},
 		{
-			"name": "Images",
+			"name": "StatusSticker",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Request-Token",
-						"value": "MNhKK0nuG4ZlXxf",
+						"value": "BUzvxsvZXZPNG8c",
 						"type": "text"
 					},
 					{
@@ -146,7 +148,7 @@
 					"formdata": [
 						{
 							"key": "app_token",
-							"value": "DCxuwBuRoGDTtC2",
+							"value": "rbNRGMamdftAUGa",
 							"type": "text"
 						},
 						{
@@ -156,7 +158,7 @@
 						},
 						{
 							"key": "app_id",
-							"value": "1",
+							"value": "2",
 							"type": "text"
 						},
 						{
@@ -168,7 +170,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/images",
+					"raw": "http://127.0.0.1:8000/api/statussticker/images",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -179,6 +181,7 @@
 					"port": "8000",
 					"path": [
 						"api",
+						"statussticker",
 						"images"
 					]
 				}
@@ -186,13 +189,13 @@
 			"response": []
 		},
 		{
-			"name": "appbystickercategory",
+			"name": "StatusTextCategory",
 			"request": {
 				"method": "POST",
 				"header": [
 					{
 						"key": "Request-Token",
-						"value": "MNhKK0nuG4ZlXxf",
+						"value": "BUzvxsvZXZPNG8c",
 						"type": "text"
 					},
 					{
@@ -206,7 +209,7 @@
 					"formdata": [
 						{
 							"key": "app_token",
-							"value": "DCxuwBuRoGDTtC2",
+							"value": "rbNRGMamdftAUGa",
 							"type": "text"
 						},
 						{
@@ -216,7 +219,129 @@
 						},
 						{
 							"key": "app_id",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "category_id",
 							"value": "1",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/statustext/category",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"statustext",
+						"category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StatusText",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Request-Token",
+						"value": "BUzvxsvZXZPNG8c",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "app_token",
+							"value": "rbNRGMamdftAUGa",
+							"type": "text"
+						},
+						{
+							"key": "device_id",
+							"value": "TEST4",
+							"type": "text"
+						},
+						{
+							"key": "app_id",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "category_id",
+							"value": "1",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/statustext/text",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"statustext",
+						"text"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AppByStatusStickerCategory",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Request-Token",
+						"value": "BUzvxsvZXZPNG8c",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "app_token",
+							"value": "rbNRGMamdftAUGa",
+							"type": "text"
+						},
+						{
+							"key": "device_id",
+							"value": "TEST4",
+							"type": "text"
+						},
+						{
+							"key": "app_id",
+							"value": "2",
 							"type": "text"
 						},
 						{
@@ -227,7 +352,7 @@
 					]
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/appbystickercategory",
+					"raw": "http://127.0.0.1:8000/api/appbycategory/statusstickercategory",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -238,7 +363,68 @@
 					"port": "8000",
 					"path": [
 						"api",
-						"appbystickercategory"
+						"appbycategory",
+						"statusstickercategory"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AppByStatusTextCategory",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Request-Token",
+						"value": "BUzvxsvZXZPNG8c",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "app_token",
+							"value": "rbNRGMamdftAUGa",
+							"type": "text"
+						},
+						{
+							"key": "device_id",
+							"value": "TEST4",
+							"type": "text"
+						},
+						{
+							"key": "app_id",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "main_category_id",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/appbycategory/statustextcategory",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"appbycategory",
+						"statustextcategory"
 					]
 				}
 			},
